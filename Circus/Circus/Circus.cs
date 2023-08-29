@@ -20,7 +20,7 @@ namespace Circus
             List<string> sounds = new List<string>();
             foreach (var animal in animals) 
             {
-                 sounds.Add(animal.ImitateAnimal(animal.NextAnimalImitation));
+                 sounds.AddRange(animal.ImitateAnimal(animal.NextAnimalImitation));
             }
 
             return sounds;

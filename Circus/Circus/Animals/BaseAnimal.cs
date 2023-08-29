@@ -18,17 +18,23 @@ namespace Circus.Animals
             NextAnimalImitation = nextHandler;
         }
 
-        public string ImitateAnimal(BaseAnimal nextAnimal) 
+        public List<string> ImitateAnimal(BaseAnimal nextAnimal, bool isFirst = true) 
         {
+            List<string> sounds = new List<string>();
+           
+            
             if (NextAnimalImitation != null)
             {
-                return NextAnimalImitation.ImitateAnimal(nextAnimal.NextAnimalImitation);
+                var animalSounds = NextAnimalImitation.ImitateAnimal(NextAnimalImitation, false);
+                sounds.AddRange(animalSounds);
             }
-            else
+                   
+            if(!isFirst) 
             {
-                return DoSound();
+                sounds.Add(DoSound());
             }
-        }
 
+            return sounds;
+        }
     }
 }
